@@ -33,7 +33,7 @@ From there, use symbols (underscored, as fractions) or numbers to define the wid
       <% column :one_fourth, :last do %>
         <!-- this will be a div.span-6 -->
         <% column 5 do %>
-          <!-- this will be a div.span-6 -->
+          <!-- this will be a div.span-5 -->
         <% end %>
         <% column 1, :last do %>
           <!-- this will be a div.span-1.last -->
