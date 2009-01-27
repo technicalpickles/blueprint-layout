@@ -2,4 +2,43 @@ h1. BlueprintLayout
 
 Not for the faint of heart, this plugin is used to build HTML structures with the appropriate Blueprint classes for a grid-based layout.
 
+h2. Notice: Only Works with Rails 2.2.2+!
+
+This is because the way views have been handled in previous versions are wonky, and I don't want to write a bunch of conditionals to handle older versions of Rails (yet).
+
+Ambitious?  Fork this puppy and patch it.  I'll point you to the right direction even: within @lib/view_helpers.rb@, the problem area is introduced after the constant @BLOCK_CALLED_FROM_ERB@.  Good luck!
+
+h2. Examples
+
+You're going to want to wrap your content in a @container@ block.
+
+From there, use symbols (underscored, as fractions) or numbers to define the width of your columns.  I prefer the fractions.
+
+    <% container do %>
+      <% column :three_fourths do %>
+        <!-- this will be a div.span-18 -->
+        <% column :half do %>
+          <!-- this will be a div.span-9 -->
+        <% end %>
+        <% column :one_third, prepend_one_sixth, :last do %>
+          <!-- this will be a div.span-6.prepend-3.last -->
+          <% column :half do %>
+            <!-- this will be a div.span-3 -->
+          <% end %>
+          <% column :half, :last do %>
+            <!-- this will be a div.span-3.last -->
+          <% end %>
+        <% end %>
+      <% end %>
+      <% column :one_fourth, :last do %>
+        <!-- this will be a div.span-6 -->
+        <% column 5 do %>
+          <!-- this will be a div.span-6 -->
+        <% end %>
+        <% column 1, :last do %>
+          <!-- this will be a div.span-1.last -->
+        <% end %>
+      <% end %>
+    <% end %>
+
 Copyright (c) 2008 - 2009 Joshua Clayton, released under the MIT license
