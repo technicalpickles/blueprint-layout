@@ -20,7 +20,7 @@ class BlueprintLayoutTest < BlueprintLayout::ViewTestCase
             <hr/>
             more text
           <% end %>
-          <% column :half, :last do %>
+          <% column :half, :last, :id => :footer do %>
             <% header do %>More text<% end %>
             second column
           <% end %>
@@ -43,6 +43,7 @@ class BlueprintLayoutTest < BlueprintLayout::ViewTestCase
       assert_select ".span-12.last", 1
       assert_select ".span-4.last", 1
       assert_select "hr", 2
+      assert_select '#footer'
     end
   end
 end
