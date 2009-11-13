@@ -9,7 +9,7 @@ require 'blueprint_layout'
 ActionView::Base.send :include, BlueprintLayout::ViewHelpers
 ActionController::Base.send :include, BlueprintLayout::PartialCaching
  
-class BlueprintLayout::ViewTestCase < Test::Unit::TestCase
+class BlueprintLayout::ViewTestCase < ActionController::TestCase
   def setup
     super
     @view = ActionView::Base.new
